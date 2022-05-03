@@ -9,15 +9,32 @@
       integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <title>나만의 가계부</title>
   </head>
-  <body>
-    <nav class="navbar fixed-top navbar-light" style="border-bottom: 1px solid #e9ecef;">
+  <body class="bg-light">
+    <nav class="navbar fixed-top navbar-light bg-white" style="border-bottom: 1px solid #e9ecef;">
       <div class="container-fluid px-3 justify-content-center">
-        <h4 class="pt-1">오늘의 지출</h4>
+        <h4 class="pt-1">지출 달력</h4>
       </div>
     </nav>
-    <div class="container-xl mt-5 px-4">
+    <div class="container-xl mt-5" style="border-bottom: 1px solid #e9ecef;">
+      <div class="row pt-2 bg-white">
+        <div class="col m-2">
+          <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+            <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
+            <label class="btn btn-outline-primary" for="btnradio1" style="background-color: #40BAD2; border-color: #40BAD2;">월간</label>
+          
+            <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
+            <label class="btn btn-outline-primary" for="btnradio2" style="color: #40BAD2; border-color: #40BAD2;">주간</label>
+          
+            <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">
+            <label class="btn btn-outline-primary" for="btnradio3" style="color: #40BAD2; border-color: #40BAD2;">일일</label>
+          </div>
+        </div>
+        <div class="col-5 m-2" style="text-align: end; align-self: center; ">
+          지출 : 500,000 원
+        </div>
+      </div>
     </div>
-    <nav class="navbar fixed-bottom navbar-light" style="border-top: 1px solid #e9ecef;">
+    <nav class="navbar fixed-bottom navbar-light bg-white" style="border-top: 1px solid #e9ecef;">
       <div class="container-fluid px-4">
         <a class="navbar-nav p-2" onclick="location.href='./pub-summary.html'">
           <img class="img-fluid" src="./icons/icon-summary-off.svg" style="width: 24px;" />
@@ -25,8 +42,8 @@
         <a class="navbar-nav p-2" onclick="location.href='./pub-detail.html'">
           <img class="img-fluid" src="./icons/icon-detail-off.svg" style="width: 24px;" />
         </a>
-        <a class="navbar-nav p-2" onclick="location.href='./pub-today.html'">
-          <img class="img-fluid" src="./icons/icon-today-on.svg" style="width: 24px;" />
+        <a class="navbar-nav p-2" onclick="location.href='./pub-calendar.html'">
+          <img class="img-fluid" src="./icons/icon-calendar-on.svg" style="width: 24px;" />
         </a>
         <a class="navbar-nav p-2" onclick="location.href='./pub-alarm.html'">
           <img class="img-fluid" src="./icons/icon-alarm-off.svg" style="width: 24px;" />

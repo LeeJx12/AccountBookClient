@@ -11,18 +11,80 @@
     <title>나만의 가계부</title>
   </head>
   <body>
-    <nav class="navbar fixed-top navbar-light" style="border-bottom: 1px solid #e9ecef;">
+    <nav class="navbar fixed-top navbar-light bg-white" style="border-bottom: 1px solid #e9ecef;">
         <div class="container-fluid px-3 justify-content-center">
             <h4 class="pt-1">요약</h4>
         </div>
     </nav>
-    <div class="container-xl mt-5 px-4">
+    <div class="container-xl px-4" style="height: 600px; overflow-y: auto; margin-top: 4rem;">
+      <div class="row pt-4 pb-3" style="border-bottom: 1px solid #e9ecef;">
+        <div class="col">
+          <div class="progress">
+            <div class="progress-bar" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">75%</div>
+          </div>
+        </div>
+      </div>
+      <div class="row pt-4 pb-3" style="border-bottom: 1px solid #e9ecef;">
+        <div class="col-3">
+          <h6 class="pt-2" style="font-weight: bold;">목표액</h6>
+        </div>
+        <div class="col" style="text-align: end;">
+          <h6><strong>100,000,000</strong> 원 </h6>
+          <h6 style="font-size:10px;">(<strong>1</strong>억)</h6>
+        </div>
+      </div>
+      <div class="row pt-4">
+        <div class="col-3">
+          <h6 class="pt-2" style="font-weight: bold;">현재액
+            <img src="./icons/icon-down.svg" class="img-fluid" />
+          </h6>
+        </div>
+        <div class="col" style="text-align: end;">
+          <h6><strong>75,000,000</strong> 원 </h6>
+          <h6 style="font-size:10px;">(<strong>7</strong>천 <strong>5</strong>백만원)</h6>
+        </div>
+      </div>
+      <div class="row pt-3 pb-2" style="margin-left: 20px;border-bottom: 1px solid #e9ecef;">
+        <div class="col-3">
+          <h6 style="font-weight: bold;">신한</h6>
+        </div>
+        <div class="col" style="text-align: end;">
+          <h6>50,000,000 원 </h6>
+        </div>
+      </div>
+      <div class="row pt-3 pb-2" style="margin-left: 20px;border-bottom: 1px solid #e9ecef;">
+        <div class="col-3">
+          <h6 style="font-weight: bold;">카카오</h6>
+        </div>
+        <div class="col" style="text-align: end;">
+          <h6>25,000,000 원 </h6>
+        </div>
+      </div>
+      <div class="row pb-2" style="border-bottom: 1px solid #e9ecef;">
+      </div>
+      <div class="row pt-4 pb-3" style="border-bottom: 1px solid #e9ecef;">
+        <div class="col-3">
+          <h6 class="pt-2" style="font-weight: bold;">남은액</h6>
+        </div>
+        <div class="col" style="text-align: end;">
+          <h6><strong>25,000,000</strong> 원 </h6>
+          <h6 style="font-size:10px;">(<strong>2</strong>천 <strong>5</strong>백만원)</h6>
+        </div>
+      </div>
+      <div class="row pt-4 pb-3" style="border-bottom: 1px solid #e9ecef;">
+        <div class="col-4">
+          <h6 style="font-weight: bold;">예상 달성일</h6>
+        </div>
+        <div class="col" style="text-align: end;">
+          <h6><strong>2024</strong> 년 <strong>06</strong> 월</h6>
+        </div>
+      </div>
     </div>
-    <nav class="navbar fixed-bottom navbar-light" style="border-top: 1px solid #e9ecef;">
+    <nav class="navbar fixed-bottom navbar-light bg-white" style="border-top: 1px solid #e9ecef;">
         <div class="container-fluid px-4">
           <a class="navbar-nav p-2" onclick="location.href='./pub-summary.html'"><img class="img-fluid" src="./icons/icon-summary-on.svg" style="width: 24px;" /></a>
             <a class="navbar-nav p-2" onclick="location.href='./pub-detail.html'"><img class="img-fluid" src="./icons/icon-detail-off.svg" style="width: 24px;" /></a>
-            <a class="navbar-nav p-2" onclick="location.href='./pub-today.html'"><img class="img-fluid" src="./icons/icon-today-off.svg" style="width: 24px;" /></a>
+            <a class="navbar-nav p-2" onclick="location.href='./pub-calendar.html'"><img class="img-fluid" src="./icons/icon-calendar-off.svg" style="width: 24px;" /></a>
             <a class="navbar-nav p-2" onclick="location.href='./pub-alarm.html'"><img class="img-fluid" src="./icons/icon-alarm-off.svg" style="width: 24px;" /></a>
             <a class="navbar-nav p-2" onclick="location.href='./pub-setting.html'"><img class="img-fluid" src="./icons/icon-setting-off.svg" style="width: 24px;" /></a>
         </div>

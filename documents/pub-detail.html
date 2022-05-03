@@ -10,19 +10,76 @@
 
     <title>나만의 가계부</title>
   </head>
-  <body>
-    <nav class="navbar fixed-top navbar-light" style="border-bottom: 1px solid #e9ecef;">
+  <body class="bg-light">
+    <nav class="navbar fixed-top navbar-light bg-white" style="border-bottom: 1px solid #e9ecef;">
         <div class="container-fluid px-3 justify-content-center">
             <h4 class="pt-1">상세</h4>
         </div>
     </nav>
-    <div class="container-xl mt-5 px-4">
+    <div class="container-xl px-4" style="height: 600px; overflow-y: auto; margin-top: 4rem;">
+      <div class="card mt-3 mb-1">
+        <div class="card-header bg-white">
+          <img src="./icons/icon-target.svg" class="img-fluid mb-1" />
+          신한 110-355-140469
+        </div>
+        <div class="card-body">
+          <h6 class="card-title">주거래 통장</h6>
+          <h6 class="card-subtitle mb-2 pb-3 text-muted" style="border-bottom: 1px solid #e9ecef;">2022.05.01 ~ 2024.04.30</h6>
+          <div class="row">
+            <div class="col">
+              <p class="card-text" style="font-weight: bold;">100,000,000 원</p>
+            </div>
+            <div class="col-2 mx-1" style="text-align: end;">
+              <img src="./icons/icon-more.svg" class="img-fluid" style="width: 20px;"/>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card mt-3 mb-1">
+        <div class="card-header bg-white">
+          카카오페이 110-355-140469
+        </div>
+        <div class="card-body">
+          <h6 class="card-title">생활비 통장</h6>
+          <h6 class="card-subtitle mb-2 pb-3 text-muted" style="border-bottom: 1px solid #e9ecef;">2022.05.01 ~ 2024.04.30</h6>
+          <div class="row">
+            <div class="col">
+              <p class="card-text" style="font-weight: bold;">100,000,000 원</p>
+            </div>
+            <div class="col-2 mx-1" style="text-align: end;">
+              <img src="./icons/icon-more.svg" class="img-fluid" style="width: 20px;"/>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card mt-3 mb-1">
+        <div class="card-header bg-white">
+          과학기술인공제회 110-355-140469
+        </div>
+        <div class="card-body">
+          <h6 class="card-title">과학기술인공제회 청년적금</h6>
+          <h6 class="card-subtitle mb-2 pb-3 text-muted" style="border-bottom: 1px solid #e9ecef;">2022.05.01 ~ 2024.04.30</h6>
+          <div class="row">
+            <div class="col">
+              <p class="card-text" style="font-weight: bold;">100,000,000 원</p>
+            </div>
+            <div class="col-2 mx-1" style="text-align: end;">
+              <img src="./icons/icon-more.svg" class="img-fluid" style="width: 20px;"/>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row my-4">
+        <div class="col" style="text-align: center;">
+          <img src="./icons/icon-plus.svg" class="img-fluid" style="width: 20px;" />
+        </div>
+      </div>
     </div>
-    <nav class="navbar fixed-bottom navbar-light" style="border-top: 1px solid #e9ecef;">
+    <nav class="navbar fixed-bottom navbar-light bg-white" style="border-top: 1px solid #e9ecef;">
         <div class="container-fluid px-4">
           <a class="navbar-nav p-2" onclick="location.href='./pub-summary.html'"><img class="img-fluid" src="./icons/icon-summary-off.svg" style="width: 24px;" /></a>
           <a class="navbar-nav p-2" onclick="location.href='./pub-detail.html'"><img class="img-fluid" src="./icons/icon-detail-on.svg" style="width: 24px;" /></a>
-          <a class="navbar-nav p-2" onclick="location.href='./pub-today.html'"><img class="img-fluid" src="./icons/icon-today-off.svg" style="width: 24px;" /></a>
+          <a class="navbar-nav p-2" onclick="location.href='./pub-calendar.html'"><img class="img-fluid" src="./icons/icon-calendar-off.svg" style="width: 24px;" /></a>
           <a class="navbar-nav p-2" onclick="location.href='./pub-alarm.html'"><img class="img-fluid" src="./icons/icon-alarm-off.svg" style="width: 24px;" /></a>
           <a class="navbar-nav p-2" onclick="location.href='./pub-setting.html'"><img class="img-fluid" src="./icons/icon-setting-off.svg" style="width: 24px;" /></a>
         </div>

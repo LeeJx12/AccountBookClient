@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html>
     <head>
         <!-- Required meta tags -->
         <meta charset="utf-8">
@@ -9,8 +9,8 @@
             integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
         <title>나만의 가계부</title>
     </head>
-    <body>
-        <nav class="navbar fixed-top navbar-light" style="border-bottom: 1px solid #e9ecef;">
+    <body class="bg-light">
+        <nav class="navbar fixed-top navbar-light bg-white" style="border-bottom: 1px solid #e9ecef;">
             <div class="container-fluid px-3 justify-content-center">
                 <h4 class="pt-1">개인설정</h4>
             </div>
@@ -22,9 +22,7 @@
                     <small class="text-muted">2022.04.30</small>
                 </div>
                 <div class="col" style="text-align: end;">
-                    <button type="button" class="btn btn-outline-primary btn-sm"
-                        style="color: #40BAD2; border-color: #40BAD2;"
-                        onclick="location.href='./pub-login.html'">로그아웃</button>
+                    <button type="button" class="btn btn-outline-primary btn-sm bg-white" style="color: #40BAD2; border-color: #40BAD2;" onclick="location.href='./pub-login.html'">로그아웃</button>
                 </div>
             </div>
             <div class="row pt-3">
@@ -74,11 +72,11 @@
             </div>
             <div class="row pt-3">
                 <div class="col my-3 d-grid">
-                    <button type="button" class="btn btn-outline-primary" style="color: #40BAD2; border-color: #40BAD2;">저장</button>
+                    <button type="button" class="btn btn-outline-primary bg-white" style="color: #40BAD2; border-color: #40BAD2;">저장</button>
                 </div>
             </div>
         </div>
-        <nav class="navbar fixed-bottom navbar-light" style="border-top: 1px solid #e9ecef;">
+        <nav class="navbar fixed-bottom navbar-light bg-white" style="border-top: 1px solid #e9ecef;">
             <div class="container-fluid px-4">
                 <a class="navbar-nav p-2" onclick="location.href='./pub-summary.html'">
                     <img class="img-fluid" src="./icons/icon-summary-off.svg" style="width: 24px;" />
@@ -86,8 +84,8 @@
                 <a class="navbar-nav p-2" onclick="location.href='./pub-detail.html'">
                     <img class="img-fluid" src="./icons/icon-detail-off.svg" style="width: 24px;" />
                 </a>
-                <a class="navbar-nav p-2" onclick="location.href='./pub-today.html'">
-                    <img class="img-fluid" src="./icons/icon-today-off.svg" style="width: 24px;" />
+                <a class="navbar-nav p-2" onclick="location.href='./pub-calendar.html'">
+                    <img class="img-fluid" src="./icons/icon-calendar-off.svg" style="width: 24px;" />
                 </a>
                 <a class="navbar-nav p-2" onclick="location.href='./pub-alarm.html'">
                     <img class="img-fluid" src="./icons/icon-alarm-off.svg" style="width: 24px;" />
