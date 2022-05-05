@@ -1,8 +1,11 @@
 import md5 from 'js-md5';
 import { AsyncStorage } from 'react-native';
 
-const PERSISTED_STATE_NAME = 'opgg-state';
+const PERSISTED_STATE_NAME = 'myacc-state';
 
+/**
+ * 앱 내부 저장소에 저장될 데이터 처리
+ */
 class PersistenceRegistry {
     constructor() {
         this._elements = {};
@@ -47,6 +50,10 @@ class PersistenceRegistry {
         return filteredPersistedState;
     }
 
+    /**
+     * 저장시 데이터 무결성 검증 (checksum)
+     * @param {*} state 
+     */
     persistState(state) {
         const filteredState = this._getFilteredState(state);
         const checksum = this._calculateChecksum(filteredState);

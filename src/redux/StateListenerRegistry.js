@@ -1,5 +1,8 @@
 import _ from 'lodash';
 
+/**
+ * state 변경에 대한 listener 처리
+ */
 class StateListenerRegistry {
     constructor() {
         this._selectorListeners = new Set();

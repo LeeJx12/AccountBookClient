@@ -4,6 +4,9 @@ import PersistenceRegistry from './PersistenceRegistry';
 
 const PERSIST_STATE_DELAY = 2000;
 
+/**
+ * redux middleware 처리
+ */
 MiddlewareRegistry.register(store => next => action => {
     const oldState = toState(store);
     const result = next(action);
@@ -14,16 +17,14 @@ MiddlewareRegistry.register(store => next => action => {
     return result;
 });
 
+/**
+ * @PERSIST_STATE_DELAY
+ * 저장소 접근 횟수 제한을 위해 사용
+ */
 export const throttledPersistState
     = _.throttle(
         state => PersistenceRegistry.persistState(state),
         PERSIST_STATE_DELAY);
-
-if (typeof window.addEventListener === 'function') {
-    window.addEventListener('unload', () => {
-        throttledPersistState.flush();
-    });
-}
 
 function toState(stateful) {
     if (stateful) {

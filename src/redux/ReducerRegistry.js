@@ -4,6 +4,9 @@ import PersistenceRegistry from './PersistenceRegistry';
 import MiddlewareRegistry from './MiddlewareRegistry';
 import StateListenerRegistry from './StateListenerRegistry';
 
+/**
+ * reducer 처리
+ */
 class ReducerRegistry {
     constructor() {
         this._elements = {};
