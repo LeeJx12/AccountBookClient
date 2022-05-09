@@ -1,6 +1,7 @@
+import _ from "lodash";
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { APP_SCHEME_NAME } from "../../common/constants";
+import { actionLogin } from "../actions";
 
 export class Login extends Component {
     constructor(props) {
@@ -38,17 +39,31 @@ export class Login extends Component {
                 <div className="row px-4 pt-4 justify-content-center">
                     <div className="col px-5 text-center">
                     <div className="d-grid">
-                        <button type="button" className="btn btn-primary">로그인</button>
+                        <button type="button" className="btn btn-primary" onClick={this.login}>로그인</button>
                     </div>
                     </div>
                 </div>
             </div>
         );
     }
+
+    login = () => {
+        const loginId = document.querySelector("#loginId").value;
+        const passWd = document.querySelector("#passwd").value;
+        const autoLogin = document.querySelector("#autoLogin").value;
+
+        //TODO: 모달 다이얼로그 추가할것 
+        if (_.isEmpty(loginId) || _.isEmpty(passWd)) {
+            alert("아이디와 비밀번호를 입력하세요!");
+            return;
+        }
+
+        this.props.dispatch(actionLogin(loginId, passWd, autoLogin));
+    }
 }
 
 function _mapStateToProps(state) {
-    const scheme = state[`${APP_SCHEME_NAME}/login`];
+    const scheme = state[`leejx2/accountbook/login`];
     const autoLogin = scheme?.autoLogin || false;
     const loginId = scheme?.loginId || '';
     const passWd = scheme?.passWd || '';

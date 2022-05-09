@@ -1,10 +1,8 @@
-import { APP_SCHEME_NAME } from "../common/constants";
+import { APP_SERVER_URL } from "../common/constants";
 import ReducerRegistry from "../redux/ReducerRegistry";
 import { APP_WILL_MOUNT, APP_WILL_UNMOUNT } from "./actionTypes";
 
-import '../login/reducers';
-
-ReducerRegistry.register(`${APP_SCHEME_NAME}/app`, (state = {}, action) => {
+ReducerRegistry.register(`leejx2/accountbook/app`, (state = {}, action) => {
     switch(action.type) {
         case APP_WILL_MOUNT: {
             const { app } = action;
@@ -12,6 +10,7 @@ ReducerRegistry.register(`${APP_SCHEME_NAME}/app`, (state = {}, action) => {
             if (state.app !== app) {
                 return {
                     ...state,
+                    url: APP_SERVER_URL,
                     app
                 };
             }

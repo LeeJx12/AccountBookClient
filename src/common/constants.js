@@ -1,5 +1,5 @@
 
 /**
- * redux-state scheme name
+ * server url
  */
-export const APP_SCHEME_NAME = 'leejx2/accountbook';
+export const APP_SERVER_URL = 'http://localhost:15231';

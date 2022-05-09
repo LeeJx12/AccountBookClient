@@ -6,11 +6,11 @@ import PersistenceRegistry from '../../redux/PersistenceRegistry';
 import MiddlewareRegistry from '../../redux/MiddlewareRegistry';
 import StateListenerRegistry from '../../redux/StateListenerRegistry';
 import ReducerRegistry from '../../redux/ReducerRegistry';
-import { default as Login } from "../../login/components/Login";
 import { appWillMount, appWillUnmount } from "../actions";
 import _ from "lodash";
 
 import '../reducers';
+import '../middleware';
 
 export default class App extends Component {
     constructor(props) {
@@ -29,9 +29,7 @@ export default class App extends Component {
         this._init = new Promise(resolve => {
             this.setState({
                 store: this._createStore(),
-                route: {
-                    component: Login
-                }
+                route: {}
             }, resolve);
         }).then(() => this.state.store.dispatch(appWillMount(this)));
     }
