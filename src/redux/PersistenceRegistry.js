@@ -1,10 +1,9 @@
 import md5 from 'js-md5';
-import { AsyncStorage } from 'react-native';
 
 const PERSISTED_STATE_NAME = 'myacc-state';
 
 /**
- * 앱 내부 저장소에 저장될 데이터 처리
+ * localStorage 활용
  */
 class PersistenceRegistry {
     constructor() {
@@ -29,20 +28,20 @@ class PersistenceRegistry {
         }
 
         if (Object.keys(filteredPersistedState).length === 0) {
-            AsyncStorage.getItem(PERSISTED_STATE_NAME).then(persistedState => {
-                if (persistedState) {
-                    try {
-                        persistedState = JSON.parse(persistedState);
-                    } catch (error) {
-                        persistedState = {};
-                    }
-    
-                    filteredPersistedState = this._getFilteredState(persistedState);
-    
-                    this.persistState(filteredPersistedState);
-                    AsyncStorage.removeItem(PERSISTED_STATE_NAME);
+            let persistedState = localStorage.getItem(PERSISTED_STATE_NAME);
+
+            if (persistedState) {
+                try {
+                    persistedState = JSON.parse(persistedState);
+                } catch (error) {
+                    persistedState = {};
                 }
-            });
+
+                filteredPersistedState = this._getFilteredState(persistedState);
+
+                this.persistState(filteredPersistedState);
+                localStorage.removeItem(PERSISTED_STATE_NAME);
+            }
         }
 
         this._checksum = this._calculateChecksum(filteredPersistedState);
@@ -50,20 +49,17 @@ class PersistenceRegistry {
         return filteredPersistedState;
     }
 
-    /**
-     * 저장시 데이터 무결성 검증 (checksum)
-     * @param {*} state 
-     */
     persistState(state) {
         const filteredState = this._getFilteredState(state);
         const checksum = this._calculateChecksum(filteredState);
 
         if (checksum !== this._checksum) {
             for (const subtreeName of Object.keys(filteredState)) {
-                AsyncStorage.setItem(subtreeName, JSON.stringify(filteredState[subtreeName]))
-                    .catch(error => {
-                        console.log('Error persisting redux subtree', subtreeName, error);
-                    });
+                try {
+                    localStorage.setItem(subtreeName, JSON.stringify(filteredState[subtreeName]));
+                } catch (error) {
+                    console.log('Error persisting redux subtree', subtreeName, error);
+                }
             }
             this._checksum = checksum;
         }
@@ -119,8 +115,8 @@ class PersistenceRegistry {
         return filteredSubtree;
     }
 
-    async _getPersistedSubtree(subtreeName, subtreeConfig, subtreeDefaults) {
-        let persistedSubtree = await AsyncStorage.getItem(subtreeName);
+    _getPersistedSubtree(subtreeName, subtreeConfig, subtreeDefaults) {
+        let persistedSubtree = localStorage.getItem(subtreeName);
 
         if (persistedSubtree) {
             try {

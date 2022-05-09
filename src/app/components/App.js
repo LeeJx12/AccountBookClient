@@ -1,4 +1,4 @@
-import { Component, Fragment } from "react";
+import React, { Component, Fragment } from "react";
 import { Provider } from "react-redux";
 import { combineReducers, createStore } from 'redux';
 import Thunk from 'redux-thunk';
@@ -6,7 +6,11 @@ import PersistenceRegistry from '../../redux/PersistenceRegistry';
 import MiddlewareRegistry from '../../redux/MiddlewareRegistry';
 import StateListenerRegistry from '../../redux/StateListenerRegistry';
 import ReducerRegistry from '../../redux/ReducerRegistry';
+import { default as Login } from "../../login/components/Login";
+import { appWillMount, appWillUnmount } from "../actions";
+import _ from "lodash";
 
+import '../reducers';
 
 export default class App extends Component {
     constructor(props) {
@@ -24,13 +28,18 @@ export default class App extends Component {
     componentDidMount() {
         this._init = new Promise(resolve => {
             this.setState({
-                store: this._createStore()
+                store: this._createStore(),
+                route: {
+                    component: Login
+                }
             }, resolve);
         }).then(() => this.state.store.dispatch(appWillMount(this)));
     }
 
     componentWillUnmount() {
-        this.state.store.dispatch(appWillUnmount(this));
+        if ( this.state.store ) {
+            this.state.store.dispatch(appWillUnmount(this));
+        }
     }
 
     render() {
@@ -40,7 +49,7 @@ export default class App extends Component {
             return (
                 <Provider store = { store }>
                     <Fragment>
-                        { this._createMainElement(component, props) }
+                    { component && this._createMainElement(component, props) }
                     </Fragment>
                 </Provider>
             )

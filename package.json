@@ -1,38 +1,45 @@
 {
   "name": "AccountBookClient",
   "version": "0.0.1",
-  "private": true,
-  "scripts": {
-    "android": "react-native run-android",
-    "ios": "react-native run-ios",
-    "start": "react-native start",
-    "test": "jest",
-    "lint": "eslint ."
-  },
+  "private": false,
   "dependencies": {
-    "@react-native-community/checkbox": "^0.5.12",
+    "@testing-library/jest-dom": "^5.16.4",
+    "@testing-library/react": "^13.2.0",
+    "@testing-library/user-event": "^13.5.0",
     "bootstrap-icons": "^1.8.1",
     "crypto-js": "^4.1.1",
     "js-md5": "^0.7.3",
     "lodash": "^4.17.21",
-    "react": "17.0.2",
-    "react-native": "0.68.1",
-    "react-native-bootstrap-styles": "^4.5.0-r",
+    "react": "^18.1.0",
+    "react-dom": "^18.1.0",
     "react-redux": "^8.0.1",
+    "react-scripts": "5.0.1",
     "redux": "^4.2.0",
-    "redux-thunk": "^2.4.1"
+    "redux-thunk": "^2.4.1",
+    "web-vitals": "^2.1.4"
   },
-  "devDependencies": {
-    "@babel/core": "7.17.10",
-    "@babel/runtime": "7.17.9",
-    "@react-native-community/eslint-config": "2.0.0",
-    "babel-jest": "26.6.3",
-    "eslint": "7.32.0",
-    "jest": "26.6.3",
-    "metro-react-native-babel-preset": "0.67.0",
-    "react-test-renderer": "17.0.2"
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
   },
-  "jest": {
-    "preset": "react-native"
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }
