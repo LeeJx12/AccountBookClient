@@ -14,8 +14,12 @@ const Encryptor = {
         return cipher.toString();
     },
     decrypt: pwd => {
-        const bytes = CryptoJS.AES.decrypt(pwd, aesKey);
-        return JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
+        const bytes = CryptoJS.AES.decrypt(pwd, CryptoJS.enc.Utf8.parse(aesKey), {
+            iv: CryptoJS.enc.Utf8.parse(iv),
+            padding: CryptoJS.pad.Pkcs7,
+            mode: CryptoJS.mode.CBC
+        });
+        return bytes.toString(CryptoJS.enc.Utf8);
     }
 }
 
