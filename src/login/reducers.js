@@ -1,7 +1,6 @@
 import PersistenceRegistry from "../redux/PersistenceRegistry";
 import ReducerRegistry from "../redux/ReducerRegistry";
 import Encryptor from "../common/encryptor";
-import _ from "lodash";
 import { ACTION_LOGIN, SET_SESSION_USER } from "./actionTypes";
 
 function _getInitialState() {
@@ -10,8 +9,7 @@ function _getInitialState() {
 
     const autoLogin = persistedState?.autoLogin;
     const loginId = autoLogin ? persistedState?.loginId : '';
-    let passWd = autoLogin ? persistedState?.passWd : '';
-    if (!_.isEmpty(passWd)) passWd = Encryptor.decrypt(passWd);
+    const passWd = autoLogin ? persistedState?.passWd : '';
 
     return {
         autoLogin,

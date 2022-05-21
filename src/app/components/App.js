@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from "react";
 import { Provider } from "react-redux";
-import { combineReducers, createStore } from 'redux';
+import { createStore } from 'redux';
 import Thunk from 'redux-thunk';
 import PersistenceRegistry from '../../redux/PersistenceRegistry';
 import MiddlewareRegistry from '../../redux/MiddlewareRegistry';

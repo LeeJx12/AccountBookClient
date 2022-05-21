@@ -53,7 +53,7 @@ export class Login extends Component {
         let passWd = document.querySelector("#passwd").value;
         const autoLogin = document.querySelector("#autoLogin").checked;
 
-        //TODO: 모달 다이얼로그 추가할것 
+        //TODO: 모달 다이얼로그 추가할것 + 스피너 추가할것!
         if (_.isEmpty(loginId) || _.isEmpty(passWd)) {
             alert("아이디와 비밀번호를 입력하세요!");
             return;
@@ -69,7 +69,8 @@ function _mapStateToProps(state) {
     const scheme = state[`leejx2/accountbook/login`];
     const autoLogin = scheme?.autoLogin || false;
     const loginId = scheme?.loginId || '';
-    const passWd = scheme?.passWd || '';
+    let passWd = scheme?.passWd || '';
+    if (!_.isEmpty(passWd)) passWd = Encryptor.decrypt(passWd);
 
     return {
         _autoLogin: autoLogin,
