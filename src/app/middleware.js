@@ -1,6 +1,7 @@
 import MiddlewareRegistry from "../redux/MiddlewareRegistry";
 import { APP_WILL_MOUNT } from "./actionTypes";
 import { Login } from "../login";
+import '../redux/middleware';
 
 MiddlewareRegistry.register(store => next => action => {
     const { dispatch, getState } = store;

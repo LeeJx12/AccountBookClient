@@ -71,6 +71,10 @@ export default class App extends Component {
 
         StateListenerRegistry.subscribe(store);
 
+        window.APP = {
+            store: store
+        }
+
         return store;
     }
 

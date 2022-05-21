@@ -1,6 +1,7 @@
 import _ from "lodash";
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import Encryptor from "../../common/encryptor";
 import { actionLogin } from "../actions";
 
 export class Login extends Component {
@@ -49,14 +50,16 @@ export class Login extends Component {
 
     login = () => {
         const loginId = document.querySelector("#loginId").value;
-        const passWd = document.querySelector("#passwd").value;
-        const autoLogin = document.querySelector("#autoLogin").value;
+        let passWd = document.querySelector("#passwd").value;
+        const autoLogin = document.querySelector("#autoLogin").checked;
 
         //TODO: 모달 다이얼로그 추가할것 
         if (_.isEmpty(loginId) || _.isEmpty(passWd)) {
             alert("아이디와 비밀번호를 입력하세요!");
             return;
         }
+
+        passWd = Encryptor.encrypt(passWd);
 
         this.props.dispatch(actionLogin(loginId, passWd, autoLogin));
     }
