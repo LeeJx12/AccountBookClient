@@ -6,3 +6,26 @@
     background-color: #40BAD2;
      border-color: #40BAD2;
 }
+
+.navbar.fixed-top {
+    border-bottom: 1px solid #e9ecef;
+}
+
+.navbar.fixed-bottom {
+    border-top: 1px solid #e9ecef;
+}
+.navbar.fixed-bottom .navbar-nav .img-fluid {
+    width: 24px;
+}
+.navbar.fixed-bottom .navbar-nav .badge {
+    right: 17%;
+}
+
+.container-xl {
+    height: 100%;
+    padding-top: 4rem;
+}
+.container-xl .scroll {
+    overflow-y: auto;
+    padding: 0 1.5rem !important;
+}

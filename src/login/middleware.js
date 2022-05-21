@@ -1,4 +1,4 @@
-import { MainPage } from "../app/components/MainPage";
+import { MainPage } from "../app";
 import { LOGIN_FAIL_AUTH_FAIL, LOGIN_FAIL_USER_NOT_FOUND, LOGIN_RESULT_SUCCESS } from "../common/constants";
 import MiddlewareRegistry from "../redux/MiddlewareRegistry";
 import { setSessionUser } from "./actions";
