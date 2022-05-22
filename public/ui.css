@@ -50,3 +50,6 @@
 .profile_layout {
     border-bottom: 1px solid #e9ecef;
 }
+.profile_layout .col:nth-child(2) {
+    text-align: end;
+}
