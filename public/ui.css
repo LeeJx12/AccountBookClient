@@ -10,6 +10,10 @@
     background-color: #B3E3ED;
     border-color: #B3E3ED;
 }
+.btn-outline-primary {
+    color: #40BAD2;
+    border-color: #40BAD2;
+}
 
 .navbar.fixed-top {
     border-bottom: 1px solid #e9ecef;
@@ -41,4 +45,8 @@
 .modal-backdrop {
     display: flex;
     align-items: center;
+}
+
+.profile_layout {
+    border-bottom: 1px solid #e9ecef;
 }

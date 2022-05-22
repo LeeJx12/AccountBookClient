@@ -11,13 +11,13 @@ export class SettingPane extends Component {
 
         return (
             <Container>
-                <div className="row py-3 justify-content-around align-items-center" style={{borderBottom: '1px solid #e9ecef'}}>
+                <div className="row py-3 justify-content-around align-items-center profile_layout">
                     <div className="col">
                         <h4>이정준</h4>
                         <small className="text-muted">2022.04.30</small>
                     </div>
                     <div className="col" style={{textAlign: 'end'}}>
-                        <button type="button" className="btn btn-outline-primary btn-sm bg-white" style={{color: '#40BAD2', borderColor: '#40BAD2'}}>로그아웃</button>
+                        <button type="button" className="btn btn-outline-primary btn-sm bg-white">로그아웃</button>
                     </div>
                 </div>
                 <div className="row pt-3">
@@ -63,7 +63,7 @@ export class SettingPane extends Component {
                 </div>
                 <div className="row pt-3">
                     <div className="col my-3 d-grid">
-                        <button type="button" className="btn btn-outline-primary bg-white" style={{color: '#40BAD2', borderColor: '#40BAD2'}}>저장</button>
+                        <button type="button" className="btn btn-outline-primary bg-white">저장</button>
                     </div>
                 </div>
             </Container>
