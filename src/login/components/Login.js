@@ -10,6 +10,12 @@ export class Login extends Component {
         super(props);
     }
 
+    componentDidMount() {
+        if (this.props._autoLogin) {
+            this.login();
+        }
+    }
+
     render() {
         const { _autoLogin, _loginId, _passWd } = this.props;
 
