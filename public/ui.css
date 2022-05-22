@@ -29,3 +29,7 @@
     overflow-y: auto;
     padding: 0 1.5rem !important;
 }
+
+.dp_n {
+    display: none;
+}

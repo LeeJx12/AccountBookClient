@@ -1,5 +1,6 @@
 import { MainPage } from "../app";
-import { LOGIN_FAIL_AUTH_FAIL, LOGIN_FAIL_USER_NOT_FOUND, LOGIN_RESULT_SUCCESS } from "../common/constants";
+import { messagePop } from "../common";
+import { LOGIN_FAIL_AUTH_FAIL, LOGIN_FAIL_USER_NOT_FOUND, LOGIN_RESULT_SUCCESS, MODAL_TYPE_ALERT } from "../common/constants";
 import MiddlewareRegistry from "../redux/MiddlewareRegistry";
 import { setSessionUser } from "./actions";
 import { ACTION_LOGIN } from "./actionTypes";
@@ -51,15 +52,15 @@ function doLogin(store, action) {
         } else {
             //사용자 없을때
             if (LOGIN_FAIL_USER_NOT_FOUND === data.loginFailMessage) {
-                //TODO: 팝업처리 추가할것!
-                alert("사용자가 없습니다!");
+                messagePop(dispatch, MODAL_TYPE_ALERT, '존재하지 않는 사용자입니다!');
             }
             //비밀번호 틀렸을때
             if (LOGIN_FAIL_AUTH_FAIL === data.loginFailMessage) {
-                //TODO: 팝업처리 추가할것!
-                alert("비밀번호를 확인하세요!");
+                messagePop(dispatch, MODAL_TYPE_ALERT, '비밀번호를 확인하세요!');
             }
         }
 
-    }).catch(console.error);
+    }).catch(e => {
+        messagePop(dispatch, MODAL_TYPE_ALERT, '연결에 실패했습니다!');
+    });
 }

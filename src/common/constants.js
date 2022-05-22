@@ -21,3 +21,6 @@ export const TAB_TYPE_DETAIL =                  'TAB_TYPE_DETAIL';
 export const TAB_TYPE_CALENDAR =                'TAB_TYPE_CALENDAR';
 export const TAB_TYPE_ALARM =                   'TAB_TYPE_ALARM';
 export const TAB_TYPE_SETTING =                 'TAB_TYPE_SETTING';
+
+export const MODAL_TYPE_ALERT =                 'MODAL_TYPE_ALERT';
+export const MODAL_TYPE_CONFIRM =               'MODAL_TYPE_CONFIRM';
