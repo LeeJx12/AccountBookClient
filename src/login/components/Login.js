@@ -54,7 +54,6 @@ export class Login extends Component {
         let passWd = document.querySelector("#passwd").value;
         const autoLogin = document.querySelector("#autoLogin").checked;
 
-        //TODO: 모달 다이얼로그 추가할것 + 스피너 추가할것!
         if (_.isEmpty(loginId) || _.isEmpty(passWd)) {
             messagePop(this.props.dispatch, MODAL_TYPE_ALERT, '아이디와 패스워드를 입력하세요!', () => {
                 if (_.isEmpty(loginId)) {
