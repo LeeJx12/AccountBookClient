@@ -1,7 +1,7 @@
 import _ from "lodash";
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { messagePop, MODAL_TYPE_ALERT } from "../../common";
+import { messagePop, MODAL_TYPE_ALERT, showProgressLayer } from "../../common";
 import Encryptor from "../../common/encryptor";
 import { actionLogin } from "../actions";
 
@@ -68,6 +68,7 @@ export class Login extends Component {
 
         passWd = Encryptor.encrypt(passWd);
 
+        showProgressLayer(this.props.dispatch);
         this.props.dispatch(actionLogin(loginId, passWd, autoLogin));
     }
 }

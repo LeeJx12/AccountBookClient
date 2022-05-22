@@ -1,5 +1,5 @@
 import { MainPage } from "../app";
-import { messagePop } from "../common";
+import { hideProgressLayer, messagePop } from "../common";
 import { LOGIN_FAIL_AUTH_FAIL, LOGIN_FAIL_USER_NOT_FOUND, LOGIN_RESULT_SUCCESS, MODAL_TYPE_ALERT } from "../common/constants";
 import MiddlewareRegistry from "../redux/MiddlewareRegistry";
 import { setSessionUser } from "./actions";
@@ -39,6 +39,8 @@ function doLogin(store, action) {
     }).then(response => {
         return response.json();
     }).then(data => {
+        hideProgressLayer(dispatch);
+
         //로그인 후
         if (LOGIN_RESULT_SUCCESS === data.loginResult) {
             //세션 저장
@@ -61,6 +63,7 @@ function doLogin(store, action) {
         }
 
     }).catch(e => {
+        hideProgressLayer(dispatch);
         messagePop(dispatch, MODAL_TYPE_ALERT, '연결에 실패했습니다!');
     });
 }

@@ -1,6 +1,6 @@
 import { uniqueId } from "lodash";
 import ReducerRegistry from "../redux/ReducerRegistry";
-import { HIDE_MODAL_POPUP, SHOW_MODAL_POPUP } from './actionTypes';
+import { HIDE_MODAL_POPUP, HIDE_PROGRESS, SHOW_MODAL_POPUP, SHOW_PROGRESS } from './actionTypes';
 
 function _getInitialState() {
     return {
@@ -9,7 +9,8 @@ function _getInitialState() {
             modalType: '',
             body: '',
             callbackFn: undefined
-        }
+        },
+        onProgress: false
     }
 }
 
@@ -21,6 +22,14 @@ ReducerRegistry.register(`leejx2/accountbook/common`, (state = _getInitialState(
         }
         case HIDE_MODAL_POPUP: {
             hideModalPopup(state, action);
+            break;
+        }
+        case SHOW_PROGRESS: {
+            state.onProgress = true;
+            break;
+        }
+        case HIDE_PROGRESS: {
+            state.onProgress = false;
             break;
         }
     }
