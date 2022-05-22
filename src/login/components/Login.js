@@ -1,6 +1,7 @@
 import _ from "lodash";
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { messagePop, MODAL_TYPE_ALERT } from "../../common";
 import Encryptor from "../../common/encryptor";
 import { actionLogin } from "../actions";
 
@@ -55,7 +56,13 @@ export class Login extends Component {
 
         //TODO: 모달 다이얼로그 추가할것 + 스피너 추가할것!
         if (_.isEmpty(loginId) || _.isEmpty(passWd)) {
-            alert("아이디와 비밀번호를 입력하세요!");
+            messagePop(this.props.dispatch, MODAL_TYPE_ALERT, '아이디와 패스워드를 입력하세요!', () => {
+                if (_.isEmpty(loginId)) {
+                    document.querySelector("#loginId").focus();
+                } else if (_.isEmpty(passWd)) {
+                    document.querySelector("#passwd").focus();
+                }
+            });
             return;
         }
 
