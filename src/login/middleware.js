@@ -3,7 +3,8 @@ import { hideProgressLayer, messagePop } from "../common";
 import { LOGIN_FAIL_AUTH_FAIL, LOGIN_FAIL_USER_NOT_FOUND, LOGIN_RESULT_SUCCESS, MODAL_TYPE_ALERT } from "../common/constants";
 import MiddlewareRegistry from "../redux/MiddlewareRegistry";
 import { setSessionUser } from "./actions";
-import { ACTION_LOGIN } from "./actionTypes";
+import { ACTION_LOGIN, ACTION_LOGOUT } from "./actionTypes";
+import { Login } from "./components";
 
 
 MiddlewareRegistry.register(store => next => action => {
@@ -12,6 +13,10 @@ MiddlewareRegistry.register(store => next => action => {
     switch(action.type) {
         case ACTION_LOGIN: {
             doLogin(store, action);
+            break;
+        }
+        case ACTION_LOGOUT: {
+            doLogout(store);
             break;
         }
     }
@@ -66,4 +71,13 @@ function doLogin(store, action) {
         hideProgressLayer(dispatch);
         messagePop(dispatch, MODAL_TYPE_ALERT, '연결에 실패했습니다!');
     });
+}
+
+function doLogout(store) {
+    const state = store.getState();
+    const stateFul = state[`leejx2/accountbook/app`];
+    stateFul.app._navigate({
+        component: Login,
+        props: store
+    })
 }

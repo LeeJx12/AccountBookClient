@@ -1,4 +1,4 @@
-import { ACTION_LOGIN, SET_SESSION_USER } from "./actionTypes";
+import { ACTION_LOGIN, ACTION_LOGOUT, SET_SESSION_USER } from "./actionTypes";
 
 
 export function actionLogin(loginId, passWd, autoLogin) {
@@ -8,6 +8,10 @@ export function actionLogin(loginId, passWd, autoLogin) {
         passWd: passWd,
         autoLogin: autoLogin
     }
+}
+
+export function actionLogout() {
+    return { type: ACTION_LOGOUT }
 }
 
 export function setSessionUser(sessionUser) {

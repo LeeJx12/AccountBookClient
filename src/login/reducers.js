@@ -1,7 +1,7 @@
 import PersistenceRegistry from "../redux/PersistenceRegistry";
 import ReducerRegistry from "../redux/ReducerRegistry";
 import Encryptor from "../common/encryptor";
-import { ACTION_LOGIN, SET_SESSION_USER } from "./actionTypes";
+import { ACTION_LOGIN, ACTION_LOGOUT, SET_SESSION_USER } from "./actionTypes";
 
 function _getInitialState() {
     let persistedState = PersistenceRegistry.getPersistedState();
@@ -31,6 +31,12 @@ ReducerRegistry.register(`leejx2/accountbook/login`, (state = _getInitialState()
             state.loginId = action.loginId;
             state.passWd = action.passWd;
             state.autoLogin = action.autoLogin;
+            break;
+        }
+        case ACTION_LOGOUT: {
+            state.loginId = '';
+            state.passWd = '';
+            state.autoLogin = false;
             break;
         }
         case SET_SESSION_USER: {

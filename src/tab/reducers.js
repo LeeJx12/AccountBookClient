@@ -1,4 +1,5 @@
 import { TAB_TYPE_SUMMARY } from "../common/constants";
+import { ACTION_LOGOUT } from "../login";
 import ReducerRegistry from "../redux/ReducerRegistry";
 import { ACTION_CHANGE_TAB } from "./actionTypes";
 
@@ -12,6 +13,10 @@ ReducerRegistry.register(`leejx2/accountbook/tab`, (state = _getInitialState(), 
     switch(action.type) {
         case ACTION_CHANGE_TAB: {
             state.tab = action.tab;
+            break;
+        }
+        case ACTION_LOGOUT: {
+            state = _getInitialState();
             break;
         }
     }

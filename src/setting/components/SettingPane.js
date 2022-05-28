@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import Container from "../../app/components/Container";
+import { MODAL_TYPE_CONFIRM, messagePop } from "../../common";
 import { getDateStr } from "../../common/functions";
+import { actionLogout } from "../../login";
 
 export class SettingPane extends Component {
     constructor(props) {
@@ -19,7 +21,7 @@ export class SettingPane extends Component {
                         <small className="text-muted">{_startDate}</small>
                     </div>
                     <div className="col">
-                        <button type="button" className="btn btn-outline-primary btn-sm bg-white">로그아웃</button>
+                        <button type="button" className="btn btn-outline-primary btn-sm bg-white" onClick={this.logout}>로그아웃</button>
                     </div>
                 </div>
                 <div className="row pt-3">
@@ -74,6 +76,14 @@ export class SettingPane extends Component {
                 </div>
             </Container>
         )
+    }
+
+    logout = () => {
+        const { dispatch } = this.props;
+
+        messagePop(dispatch, MODAL_TYPE_CONFIRM, '로그아웃 하시겠습니까?', () => {
+            dispatch(actionLogout());
+        });
     }
 }
 

@@ -39,14 +39,17 @@ ReducerRegistry.register(`leejx2/accountbook/common`, (state = _getInitialState(
 });
 
 function showModalPopup(state, action) {
-    state.modal.onShow = true;
     state.modal.modalType = action.modalType;
     state.modal.body = action.body;
     state.modal.callbackFn = action.callbackFn;
 
-    const backdrop = document.createElement("div");
-    backdrop.classList.add('modal-backdrop', 'fade', 'show');
-    document.body.appendChild(backdrop);
+    if (!state.modal.onShow) {
+        state.modal.onShow = true;
+
+        const backdrop = document.createElement("div");
+        backdrop.classList.add('modal-backdrop', 'fade', 'show');
+        document.body.appendChild(backdrop);
+    }
 }
 
 function hideModalPopup(state, action) {
