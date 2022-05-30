@@ -1,3 +1,4 @@
+import _ from "lodash";
 import { hideProgress, showModalPopup, showProgress } from "./actions";
 
 /**
@@ -48,4 +49,27 @@ export function getDateStr(date, format) {
     format = format.replace('ss', second);
 
     return format;
+}
+
+export function getMountHelper(num) {
+    let helper = '';
+    let numStr = num + '';
+
+    if ( numStr.length >= 9 ) {
+        helper = Number(numStr.substring(0, numStr.length - 8)).toLocaleString() + '억 ';
+        numStr = numStr.substring(numStr.length - 8, numStr.length);
+    }
+
+    num = Number(numStr);
+    numStr = num + '';
+
+    if ( numStr.length >= 5 ) {
+        helper += Number(numStr.substring(0, numStr.length - 4)).toLocaleString() + '만 ';
+        numStr = numStr.substring(numStr.length - 4, numStr.length);
+    }
+
+    num = Number(numStr);
+    helper += num !== 0 ? (num.toLocaleString() + '원') : (_.isEmpty(helper) ? '0원' : '원');
+
+    return helper;
 }

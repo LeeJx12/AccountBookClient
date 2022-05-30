@@ -1,9 +1,11 @@
+import _ from "lodash";
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import Container from "../../app/components/Container";
-import { MODAL_TYPE_CONFIRM, messagePop } from "../../common";
+import { MODAL_TYPE_CONFIRM, messagePop, Input, showProgressLayer } from "../../common";
 import { getDateStr } from "../../common/functions";
 import { actionLogout } from "../../login";
+import { saveSetting } from "../actions";
 
 export class SettingPane extends Component {
     constructor(props) {
@@ -11,7 +13,17 @@ export class SettingPane extends Component {
     }
 
     render() {
-        const { _userName, _startDate } = this.props;
+        const { 
+            _userName, 
+            _startDate,
+            _targetAmount,
+            _monthLife,
+            _dayLife,
+            _deposits,
+            _livExpDepositId
+        } = this.props;
+
+        const disabled = _.isEmpty(_livExpDepositId);
 
         return (
             <Container>
@@ -26,35 +38,17 @@ export class SettingPane extends Component {
                 </div>
                 <div className="row pt-3">
                     <div className="col">
-                        <div className="mb-3">
-                            <label htmlFor="targetAmount" className="form-label">
-                                <img src="./icons/icon-target.svg" className="img-fluid pb-1" /> 목표액 
-                            </label>
-                            <input type="text" className="form-control" id="targetAmount" placeholder="100,000,000" aria-describedby="amountHelper"/>
-                            <div id="amountHelper" className="form-text mx-2">1억원</div>
-                        </div>
+                        <Input id="targetAmount" className="mb-3" iconName="icon-target" title="목표액" initMount={_targetAmount} />
                     </div>
                 </div>
                 <div className="row pt-3">
                     <div className="col">
-                        <div className="mb-3">
-                            <label htmlFor="monthLife" className="form-label">
-                                <img src="./icons/icon-calendar-red.svg" className="img-fluid pb-1" /> 월 생활비 
-                            </label>
-                            <input type="text" className="form-control" id="monthLife" placeholder="500,000" aria-describedby="monthHelper"/>
-                            <div id="monthHelper" className="form-text mx-2">50만원</div>
-                        </div>
+                        <Input id="monthLife" className="mb-3" iconName="icon-calendar-red" title="월 생활비" initMount={_monthLife} />
                     </div>
                 </div>
                 <div className="row pt-3">
                     <div className="col">
-                        <div className="mb-3">
-                            <label htmlFor="dayLife" className="form-label">
-                                <img src="./icons/icon-calc-blue.svg" className="img-fluid pb-1" /> 일일 생활비 
-                            </label>
-                            <input type="text" className="form-control" id="dayLife" placeholder="10,000" aria-describedby="dayHelper"/>
-                            <div id="dayHelper" className="form-text mx-2">1만원</div>
-                        </div>
+                        <Input id="dayLife" className="mb-3" iconName="icon-calc-blue" title="일일 생활비" initMount={_dayLife} />
                     </div>
                 </div>
                 <div className="row pt-3">
@@ -62,16 +56,21 @@ export class SettingPane extends Component {
                         <label htmlFor="livexpdepositid" className="form-label">
                             <img src="./icons/icon-card.svg" className="img-fluid pb-1" /> 생활비 계좌 
                         </label>
-                        <select className="form-select" id="livexpdepositid" aria-label="주 생활비 계좌를 등록하세요!">
-                            <option value="1">신한</option>
-                            <option value="2">카카오페이</option>
-                            <option value="3">국민</option>
+                        <select className="form-select" id="livexpdepositid" aria-label="주 생활비 계좌를 등록하세요!" disabled={disabled}>
+                            {
+                                _deposits.map(deposit => {
+                                    const selected = _livExpDepositId === deposit.id ? 'selected' : '';
+                                    return (
+                                        <option value={deposit.id} selected={selected}>{deposit.name}</option>
+                                    )
+                                })
+                            }
                         </select>
                     </div>
                 </div>
                 <div className="row pt-3">
                     <div className="col my-3 d-grid">
-                        <button type="button" className="btn btn-outline-primary bg-white">저장</button>
+                        <button type="button" className="btn btn-outline-primary bg-white" onClick={this.onSave}>저장</button>
                     </div>
                 </div>
             </Container>
@@ -85,16 +84,35 @@ export class SettingPane extends Component {
             dispatch(actionLogout());
         });
     }
+
+    onSave = () => {
+        const { dispatch } = this.props;
+
+        showProgressLayer(dispatch);
+
+        const targetAmount      = Number(document.querySelector("#targetAmount").value.replace(/\,/gi, ''));
+        const monthLife         = Number(document.querySelector("#monthLife").value.replace(/\,/gi, ''));
+        const dayLife           = Number(document.querySelector("#dayLife").value.replace(/\,/gi, ''));
+        const livExpDepositId   = document.querySelector("#livexpdepositid").value;
+
+        dispatch(saveSetting(targetAmount, monthLife, dayLife, livExpDepositId));
+    }
 }
 
 function _mapStateToProps(state) {
     const sessionUser = state[`leejx2/accountbook/login`].sessionUser;
+    const deposits = state[`leejx2/accountbook/login`].deposits || [];
     const { userName } = sessionUser;
     const startDate = getDateStr(new Date(sessionUser.startDate), 'yyyy.MM.dd');
 
     return {
-        _userName: userName,
-        _startDate: startDate,
+        _userName:          userName,
+        _startDate:         startDate,
+        _targetAmount:      sessionUser.targetAmount,
+        _monthLife:         sessionUser.monthLife,
+        _dayLife:           sessionUser.dayLife,
+        _deposits:          deposits,
+        _livExpDepositId:   sessionUser.livExpDepositId || ''
     };
 }
 
