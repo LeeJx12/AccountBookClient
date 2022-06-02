@@ -1,5 +1,6 @@
 import _ from "lodash";
 import { hideProgress, showModalPopup, showProgress } from "./actions";
+import { APP_SERVER_URL } from "./constants";
 
 /**
  * alert, confirm 메시지 팝업
@@ -51,6 +52,11 @@ export function getDateStr(date, format) {
     return format;
 }
 
+/**
+ * Input 금액 한글처리
+ * @param {} num 
+ * @returns 
+ */
 export function getMountHelper(num) {
     let helper = '';
     let numStr = num + '';
@@ -72,4 +78,30 @@ export function getMountHelper(num) {
     helper += num !== 0 ? (num.toLocaleString() + '원') : (_.isEmpty(helper) ? '0원' : '원');
 
     return helper;
+}
+
+/**
+ * fetch override
+ * @param {*} path 
+ * @param {*} method 
+ * @param {*} params 
+ */
+export function fetchToSvr(path, method, params) {
+    return new Promise((resolve, reject) => {
+        const adds = {
+            method: method,
+            headers: {
+                'content-type': 'application/json',
+            }
+        };
+
+        if ('GET' !== method) {
+            adds.body = params ? JSON.stringify(params) : '{}'
+        }
+
+        fetch(`${APP_SERVER_URL + path}`, adds)
+        .then(response => response.json())
+        .then(resolve)
+        .catch(reject);
+    });
 }

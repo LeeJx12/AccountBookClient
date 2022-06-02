@@ -1,4 +1,4 @@
-import { hideProgressLayer, messagePop, MODAL_TYPE_ALERT, showProgressLayer, TAB_TYPE_SETTING } from "../common";
+import { fetchToSvr, hideProgressLayer, messagePop, MODAL_TYPE_ALERT, showProgressLayer, TAB_TYPE_SETTING } from "../common";
 import MiddlewareRegistry from "../redux/MiddlewareRegistry";
 import { ACTION_CHANGE_TAB } from "../tab";
 import { ACTION_SAVE_SETTING } from "./actionTypes";
@@ -25,18 +25,10 @@ function openSettingTab(state, dispatch, tab) {
         showProgressLayer(dispatch);
 
         const user = state[`leejx2/accountbook/login`].sessionUser;
-        const app = state[`leejx2/accountbook/app`];
-        const url = app.url;
         const userId = user.userId;
 
-        fetch(`${url}/rest/deposit/${userId}`, {
-            method: 'GET',
-            headers: {
-                'content-type': 'application/json',
-            }
-        }).then(response => {
-            return response.json()
-        }).then(data => {
+        fetchToSvr(`/rest/deposit/${userId}`, 'GET')
+        .then(data => {
             hideProgressLayer(dispatch);
 
             state[`leejx2/accountbook/login`].deposits = data;
@@ -52,9 +44,7 @@ function saveSettings(store, action) {
     const { dispatch, getState } = store;
     const state = getState();
 
-    const app = state[`leejx2/accountbook/app`];
     const user = state[`leejx2/accountbook/login`].sessionUser;
-    const url = app.url;
     const userId = user.userId;
 
     const targetAmount      = action.targetAmount;
@@ -62,24 +52,17 @@ function saveSettings(store, action) {
     const dayLife           = action.dayLife;
     const livExpDepositId   = action.livExpDepositId;
 
-    fetch(`${url}/rest/user`, {
-        method: 'PUT',
-        headers: {
-            'content-type': 'application/json',
-        },
-        body: JSON.stringify({
-            userId: userId,
-            targetAmount: targetAmount,
-            monthLife: monthLife,
-            dayLife: dayLife,
-            livExpDepositId: livExpDepositId
-        })
+    fetchToSvr(`/rest/user`, 'PUT', {
+        userId: userId,
+        targetAmount: targetAmount,
+        monthLife: monthLife,
+        dayLife: dayLife,
+        livExpDepositId: livExpDepositId
     }).then(response => {
         hideProgressLayer(dispatch);
-        console.log(response);
         messagePop(dispatch, MODAL_TYPE_ALERT, '저장되었습니다!');
     }).catch(e => {
         hideProgressLayer(dispatch);
-        messagePop(dispatch, MODAL_TYPE_ALERT, '연결에 실패했습니다!');
+        messagePop(dispatch, MODAL_TYPE_ALERT, '연결에 실패했습니다! ');
     });
 }

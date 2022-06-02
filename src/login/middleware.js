@@ -1,5 +1,5 @@
 import { MainPage } from "../app";
-import { hideProgressLayer, messagePop } from "../common";
+import { fetchToSvr, hideProgressLayer, messagePop } from "../common";
 import { LOGIN_FAIL_AUTH_FAIL, LOGIN_FAIL_USER_NOT_FOUND, LOGIN_RESULT_SUCCESS, MODAL_TYPE_ALERT } from "../common/constants";
 import MiddlewareRegistry from "../redux/MiddlewareRegistry";
 import { setSessionUser } from "./actions";
@@ -27,22 +27,14 @@ MiddlewareRegistry.register(store => next => action => {
 function doLogin(store, action) {
     const state = store.getState();
     const { dispatch } = store;
+
     const stateFul = state[`leejx2/accountbook/app`];
-    const url = stateFul.url;
     const loginId = action.loginId;
     const passWd = action.passWd;
 
-    fetch(`${url}/login`, {
-        method: 'POST',
-        headers: {
-            'content-type': 'application/json',
-        },
-        body: JSON.stringify({
-            loginId: loginId,
-            passwd: passWd
-        })
-    }).then(response => {
-        return response.json();
+    fetchToSvr('/login', 'POST', {
+        loginId: loginId,
+        passwd: passWd
     }).then(data => {
         hideProgressLayer(dispatch);
 
