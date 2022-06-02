@@ -5,13 +5,15 @@ import { messagePop, MODAL_TYPE_ALERT, showProgressLayer } from "../../common";
 import Encryptor from "../../common/encryptor";
 import { actionLogin } from "../actions";
 
+let loginAttemptCnt = 0;
+
 export class Login extends Component {
     constructor(props) {
         super(props);
     }
 
     componentDidMount() {
-        if (this.props._autoLogin) {
+        if (this.props._autoLogin && loginAttemptCnt === 0) {
             this.login();
         }
     }
@@ -56,6 +58,8 @@ export class Login extends Component {
     }
 
     login = () => {
+        loginAttemptCnt++;
+
         const loginId = document.querySelector("#loginId").value;
         let passWd = document.querySelector("#passwd").value;
         const autoLogin = document.querySelector("#autoLogin").checked;

@@ -1,16 +1,11 @@
 import { fetchToSvr, hideProgressLayer, messagePop, MODAL_TYPE_ALERT, showProgressLayer, TAB_TYPE_SETTING } from "../common";
 import MiddlewareRegistry from "../redux/MiddlewareRegistry";
-import { ACTION_CHANGE_TAB } from "../tab";
 import { ACTION_SAVE_SETTING } from "./actionTypes";
 
 MiddlewareRegistry.register(store => next => action => {
     const { dispatch, getState } = store;
 
     switch(action.type) {
-        case ACTION_CHANGE_TAB: {
-            openSettingTab(getState(), dispatch, action.tab);
-            break;
-        }
         case ACTION_SAVE_SETTING: {
             saveSettings(store, action);
             break;
@@ -19,26 +14,6 @@ MiddlewareRegistry.register(store => next => action => {
 
     return next(action);
 })
-
-function openSettingTab(state, dispatch, tab) {
-    if (TAB_TYPE_SETTING === tab) {
-        showProgressLayer(dispatch);
-
-        const user = state[`leejx2/accountbook/login`].sessionUser;
-        const userId = user.userId;
-
-        fetchToSvr(`/rest/deposit/${userId}`, 'GET')
-        .then(data => {
-            hideProgressLayer(dispatch);
-
-            state[`leejx2/accountbook/login`].deposits = data;
-        }).catch(e => {
-            hideProgressLayer(dispatch);
-
-            messagePop(dispatch, MODAL_TYPE_ALERT, '연결에 실패했습니다!');
-        });
-    }
-}
 
 function saveSettings(store, action) {
     const { dispatch, getState } = store;
@@ -59,10 +34,10 @@ function saveSettings(store, action) {
         dayLife: dayLife,
         livExpDepositId: livExpDepositId
     }).then(response => {
-        hideProgressLayer(dispatch);
         messagePop(dispatch, MODAL_TYPE_ALERT, '저장되었습니다!');
     }).catch(e => {
-        hideProgressLayer(dispatch);
         messagePop(dispatch, MODAL_TYPE_ALERT, '연결에 실패했습니다! ');
-    });
+    }).finally(() => {
+        hideProgressLayer(dispatch);
+    })
 }

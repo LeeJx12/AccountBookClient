@@ -2,7 +2,7 @@ import { MainPage } from "../app";
 import { fetchToSvr, hideProgressLayer, messagePop } from "../common";
 import { LOGIN_FAIL_AUTH_FAIL, LOGIN_FAIL_USER_NOT_FOUND, LOGIN_RESULT_SUCCESS, MODAL_TYPE_ALERT } from "../common/constants";
 import MiddlewareRegistry from "../redux/MiddlewareRegistry";
-import { setSessionUser } from "./actions";
+import { actionLoginAfter, setSessionUser } from "./actions";
 import { ACTION_LOGIN, ACTION_LOGOUT } from "./actionTypes";
 import { Login } from "./components";
 
@@ -42,6 +42,9 @@ function doLogin(store, action) {
         if (LOGIN_RESULT_SUCCESS === data.loginResult) {
             //세션 저장
             dispatch(setSessionUser(data));
+
+            //로그인 후 처리
+            dispatch(actionLoginAfter());
 
             //메인페이지 이동
             stateFul.app._navigate({

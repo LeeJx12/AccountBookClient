@@ -4,6 +4,11 @@
 export const ACTION_LOGIN = 'ACTION_LOGIN';
 
 /**
+ * 로그인 후 처리
+ */
+export const ACTION_LOGIN_AFTER = 'ACTION_LOGIN_AFTER';
+
+/**
  * 로그아웃 처리
  */
 export const ACTION_LOGOUT = 'ACTION_LOGOUT';

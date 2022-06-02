@@ -101,7 +101,7 @@ export class SettingPane extends Component {
 
 function _mapStateToProps(state) {
     const sessionUser = state[`leejx2/accountbook/login`].sessionUser;
-    const deposits = state[`leejx2/accountbook/login`].deposits || [];
+    const deposits = state[`leejx2/accountbook/deposit`].deposits || [];
     const { userName } = sessionUser;
     const startDate = getDateStr(new Date(sessionUser.startDate), 'yyyy.MM.dd');
 
