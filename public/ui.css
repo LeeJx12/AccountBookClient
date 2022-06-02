@@ -53,3 +53,19 @@
 .profile_layout .col:nth-child(2) {
     text-align: end;
 }
+
+.card .card-header .img-fluid {
+    margin-right: 5px;
+}
+.card .card-body .card-subtitle {
+    border-bottom: 1px solid #e9ecef;
+}
+.card .card-body .card-text {
+    font-weight: bold;
+}
+.card .card-body .deposit-more {
+    text-align: end;
+}
+.card .card-body .deposit-more .img-fluid {
+    width: 20px;
+}
