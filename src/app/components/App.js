@@ -11,7 +11,7 @@ import _ from "lodash";
 
 import '../reducers';
 import '../middleware';
-import { Modal, Progress } from "../../common";
+import { Modal, Progress, Layer } from "../../common";
 
 export default class App extends Component {
     constructor(props) {
@@ -51,6 +51,7 @@ export default class App extends Component {
                         { component && this._createMainElement(component, props) }
                         <Modal/>
                         <Progress/>
+                        <Layer/>
                     </Fragment>
                 </Provider>
             )

@@ -1,5 +1,7 @@
-import _ from "lodash";
-import { hideProgress, showModalPopup, showProgress } from "./actions";
+import _, { uniqueId } from "lodash";
+import ReactDOM from 'react-dom/client';
+import { hideLayerPopup, hideProgress, showLayerPopup, showModalPopup, showProgress } from "./actions";
+import { Layer } from "./components/Layer";
 import { APP_SERVER_URL } from "./constants";
 
 /**
@@ -104,4 +106,13 @@ export function fetchToSvr(path, method, params) {
         .then(resolve)
         .catch(reject);
     });
+}
+
+
+export function showLayer(dispatch, component, title) {
+    dispatch(showLayerPopup(title, component));
+}
+
+export function hideLayer(dispatch) {
+    dispatch(hideLayerPopup());
 }

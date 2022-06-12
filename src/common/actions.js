@@ -1,4 +1,4 @@
-import { HIDE_MODAL_POPUP, HIDE_PROGRESS, SHOW_MODAL_POPUP, SHOW_PROGRESS } from './actionTypes';
+import { HIDE_LAYER_POPUP, HIDE_MODAL_POPUP, HIDE_PROGRESS, SHOW_LAYER_POPUP, SHOW_MODAL_POPUP, SHOW_PROGRESS } from './actionTypes';
 
 export function showModalPopup(modalType, body, callbackFn) {
     return {
@@ -19,4 +19,16 @@ export function showProgress() {
 
 export function hideProgress() {
     return { type: HIDE_PROGRESS };
+}
+
+export function showLayerPopup(title, content) {
+    return {
+        type: SHOW_LAYER_POPUP,
+        title: title,
+        content: content
+    }
+}
+
+export function hideLayerPopup() {
+    return { type: HIDE_LAYER_POPUP };
 }

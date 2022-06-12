@@ -1,9 +1,11 @@
 import ReducerRegistry from "../redux/ReducerRegistry";
 import { SET_DEPOSITS } from "./actionTypes";
+import Deposit from "./components/Deposit";
 
 function _getInitialState() {
     return {
-        deposits: []
+        deposits: [],
+        deposit: new Deposit()
     }
 }
 

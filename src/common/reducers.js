@@ -1,6 +1,6 @@
 import { uniqueId } from "lodash";
 import ReducerRegistry from "../redux/ReducerRegistry";
-import { HIDE_MODAL_POPUP, HIDE_PROGRESS, SHOW_MODAL_POPUP, SHOW_PROGRESS } from './actionTypes';
+import { HIDE_LAYER_POPUP, HIDE_MODAL_POPUP, HIDE_PROGRESS, SHOW_LAYER_POPUP, SHOW_MODAL_POPUP, SHOW_PROGRESS } from './actionTypes';
 
 function _getInitialState() {
     return {
@@ -9,6 +9,11 @@ function _getInitialState() {
             modalType: '',
             body: '',
             callbackFn: undefined
+        },
+        layer: {
+            onShow: false,
+            title: '',
+            content: undefined
         },
         onProgress: false
     }
@@ -30,6 +35,14 @@ ReducerRegistry.register(`leejx2/accountbook/common`, (state = _getInitialState(
         }
         case HIDE_PROGRESS: {
             state.onProgress = false;
+            break;
+        }
+        case SHOW_LAYER_POPUP: {
+            showLayerPopup(state, action);
+            break;
+        }
+        case HIDE_LAYER_POPUP: {
+            hideLayerPopup(state, action);
             break;
         }
     }
@@ -57,4 +70,14 @@ function hideModalPopup(state, action) {
 
     const backdrop = document.querySelector(".modal-backdrop.fade.show");
     backdrop.remove();
+}
+
+function showLayerPopup(state, action) {
+    state.layer.title = action.title;
+    state.layer.content = action.content;
+    state.layer.onShow = true;
+}
+
+function hideLayerPopup(state, action) {
+    state.layer = _getInitialState().layer;
 }

@@ -3,3 +3,6 @@ export const HIDE_MODAL_POPUP = 'HIDE_MODAL_POPUP';
 
 export const SHOW_PROGRESS = 'SHOW_PROGRESS';
 export const HIDE_PROGRESS = 'HIDE_PROGRESS';
+
+export const SHOW_LAYER_POPUP = 'SHOW_LAYER_POPUP';
+export const HIDE_LAYER_POPUP = 'HIDE_LAYER_POPUP';
